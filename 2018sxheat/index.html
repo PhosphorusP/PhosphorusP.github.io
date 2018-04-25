@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="google" value="notranslate" />
-    <meta name="theme-color" content="#003264">
+    <meta name="theme-color" id="c" content="#003264">
     <title>福州三中2018社团巡礼展</title>
     <style>
         * {
@@ -136,8 +136,8 @@
         tick();
         setInterval('tick()',1000);
         function toggle() {
-            if(document.getElementsByTagName('html')[0].getAttribute('class')=='') document.getElementsByTagName('html')[0].setAttribute('class','inverted');
-            else document.getElementsByTagName('html')[0].setAttribute('class','');
+            if(document.getElementsByTagName('html')[0].getAttribute('class')=='') document.getElementsByTagName('html')[0].setAttribute('class','inverted'),document.getElementById('c').setAttribute('content','#00FFFF');
+            else document.getElementsByTagName('html')[0].setAttribute('class',''),document.getElementById('c').setAttribute('content','#003264');
             return;
         }
         toggle();
