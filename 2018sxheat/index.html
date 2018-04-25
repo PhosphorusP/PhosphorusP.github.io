@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google" value="notranslate" />
+    <meta name="theme-color" content="#003264">
+    <title>福州三中2018社团巡礼展</title>
+    <style>
+        * {
+          user-select: none;
+        }
+        html {
+            background: #FDFDFD;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            transition-duration: 0.5s;
+            transform: translate3d(0px,0px,0px);
+        }
+        .inverted {
+            filter: invert(1) hue-rotate(180deg) saturate(2) brightness(1.5);
+            background: #000;
+        }
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            text-align: center;
+        }
+        .logo {
+            background: url(logo.svg);
+            width:80%;
+            height: 80%;
+            margin: auto;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+        }
+        .flash {
+            transition-duration: 0.4s;
+            width: 100%;
+            color: #003264;
+            font-family: sans-serif;
+            font-size: 24px;
+            line-height: 64px;
+            margin-top: -64px;
+            height: 64px;
+            transform: translate3d(0px,0px,0px);
+        }
+        .flash::before {
+            content: "» ";
+        }
+        .flash::after {
+            content: " «";
+        }
+        #particles {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+        #time {
+            position: fixed;
+            width: 100%;
+            left: 0;
+            top: 32px;
+            color: #003264;
+            font-size: 14px;
+            font-family: Consolas, Monaco, monospace, 'Courier New', Courier;
+            transform: translate3d(0px,0px,0px);
+        }
+        .copyright {
+            color: rgba(0,0,0,0.5);
+            font-size: 8px;
+            position: fixed;
+            width: 100%;
+            left: 0;
+            bottom: 16px;
+            z-index: 9999;
+        }
+        .copyright:before {
+            content: '©2018 福三中学生小助手　';
+        }
+        .copyright a {
+            color: rgba(0,0,0,0.5)!important;
+        }
+    </style>
+</head>
+<body onmousedown="toggle()">
+    <div class="logo"></div>
+    <div class="flash" id="flash">???</div>
+    <div id="time">距活动开始还有：0天00小时00分钟00秒</div>
+    <div class="copyright"><a href="help.html">联系客服</a></div>
+    <div id="particles"></div>
+    <script src="particles.min.js"></script>
+    <script src="visual.js"></script>
+    <script type="text/javascript">
+        h5Particle();
+        </script>
+    <script>
+        var s = new Array()
+        s = ["楚门话剧社", "弦断徵音古风社", "尘昕映画摄影社", "无戒动漫社", "超现心灵物探社", "追风无人机社", "模拟联合国社", "模拟商会社", "滚食社", "历史社", "物理社", "棋社", "魔方社", "数独社", "数学社", "汉卿话剧社", "氢氧化社", "湖滨文社", "Mystery推理社", "现代视觉研究社", "BLS急救社", "深空天文社", "梦现人声社", "英语角", "生物社", "Penbeat社", "Living Voice乐队", "Loading乐队", "拾音乐队", "Tick Tock乐队", "街舞社"]
+        function roll(a) {
+            var b = a;
+            while(a==b) b=Math.ceil(Math.random()*s.length)-1;
+            document.getElementById('flash').innerHTML = s[b];
+            setTimeout('roll('+b+')',Math.ceil(Math.random()*150)+50);
+        }
+        roll(0);
+        function tick() {
+            var csec = Math.ceil(new Date().valueOf()/1000);
+            var dsec = Math.ceil(new Date(2018,3,28,14,0).valueOf()/1000);
+            var val = dsec - csec;
+            var str = '';
+            if(val<0) {
+                str = '活动已经开始。'
+            } else {
+                var day = Math.floor(val/86400);
+                var hour = Math.floor((val-day*86400)/3600);
+                var minute = Math.floor((val-day*86400-hour*3600)/60);
+                var second = Math.floor((val-day*86400-hour*3600-minute*60)/1);
+                if(day) str += day + '天';
+                if(day||hour) str += (hour<10?'0':'') + hour + '小时'
+                if(day||hour||minute) str += (minute<10?'0':'') + minute + '分钟';
+                if(day||hour||minute||second) str += (second<10?'0':'') + second + '秒';
+                str = '距活动开始还有：' + str;
+            }
+            document.getElementById('time').innerHTML = str;
+        }
+        tick();
+        setInterval('tick()',1000);
+        function toggle() {
+            if(document.getElementsByTagName('html')[0].getAttribute('class')=='') document.getElementsByTagName('html')[0].setAttribute('class','inverted');
+            else document.getElementsByTagName('html')[0].setAttribute('class','');
+            return;
+        }
+        toggle();
+    </script>
+</body>
+</html>
