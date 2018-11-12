@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tap</title>
+    <style>
+        * {
+            transition-duration: 0.5s;
+            outline: none;
+        }
+
+        button {
+            background: #09F;
+            color: #FFF;
+            border: none;
+            font-size: 36px;
+            font-weight: 200;
+            padding: 16px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 256px;
+            transform: translate(-50%, -50%);
+        }
+
+        .colored {
+            background: #09F;
+        }
+
+        .colored>button {
+            background: #FFF;
+            color: #09F;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="start()">start</button>
+    <div id="container"></div>
+    <script>
+        function playSound(sound) {
+            tmp = '<audio src="' + sound +
+                '.m4a" autoplay onended="this.parentNode.removeChild(this)" onerror="this.parentNode.removeChild(this)"></audio>'
+            document.getElementById('container').appendChild(new DOMParser().parseFromString(tmp, 'text/html').querySelector(
+                'audio'));
+        }
+
+        function ranPlay() {
+            playSound('note_' + Math.ceil(Math.random() * 7));
+        }
+
+        function start() {
+            document.body.setAttribute('class', 'colored');
+            setTimeout(() => {
+                document.querySelector('button').innerHTML = 'Enjoy :)'
+            }, 250);
+            playSound('bgm');
+            ranPlay();
+            setInterval(() => {
+                playSound('bgm')
+            }, 8000);
+            setInterval(() => {
+                ranPlay()
+            }, 250);
+        }
+    </script>
+</body>
+
+</html>
