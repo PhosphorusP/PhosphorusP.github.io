@@ -1,73 +1,81 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Tap</title>
     <style>
-        * {
-            transition-duration: 0.5s;
-            outline: none;
-        }
+      * {
+        transition-duration: 0.5s;
+        outline: none;
+      }
 
-        button {
-            background: #09F;
-            color: #FFF;
-            border: none;
-            font-size: 36px;
-            font-weight: 200;
-            padding: 16px;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            min-width: 256px;
-            transform: translate(-50%, -50%);
-        }
+      button {
+        background: #09f;
+        color: #fff;
+        border: none;
+        font-size: 36px;
+        font-weight: 200;
+        padding: 16px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        min-width: 256px;
+        transform: translate(-50%, -50%);
+      }
 
-        .colored {
-            background: #09F;
-        }
+      .colored {
+        background: #09f;
+      }
 
-        .colored>button {
-            background: #FFF;
-            color: #09F;
-            pointer-events: none;
-        }
+      .colored > button {
+        background: #fff;
+        color: #09f;
+        pointer-events: none;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <button onclick="start()">start</button>
     <div id="container"></div>
     <script>
-        function playSound(sound) {
-            tmp = '<audio src="' + sound +
-                '.m4a" autoplay onended="this.parentNode.removeChild(this)" onerror="this.parentNode.removeChild(this)"></audio>'
-            document.getElementById('container').appendChild(new DOMParser().parseFromString(tmp, 'text/html').querySelector(
-                'audio'));
-        }
+      function playSound(sound) {
+        tmp =
+          '<audio src="' +
+          sound +
+          '.m4a" autoplay onended="this.parentNode.removeChild(this)" onerror="this.parentNode.removeChild(this)"></audio>';
+        document
+          .getElementById("container")
+          .appendChild(
+            new DOMParser()
+              .parseFromString(tmp, "text/html")
+              .querySelector("audio")
+          );
+      }
 
-        function ranPlay() {
-            playSound('note_' + Math.ceil(Math.random() * 7));
-        }
+      function ranPlay() {
+        playSound("note_" + Math.ceil(Math.random() * 7));
+      }
 
-        function start() {
-            document.body.setAttribute('class', 'colored');
-            setTimeout(() => {
-                document.querySelector('button').innerHTML = 'Enjoy :)'
-            }, 250);
-            playSound('bgm');
-            ranPlay();
-            setInterval(() => {
-                playSound('bgm')
-            }, 8000);
-            setInterval(() => {
-                ranPlay()
-            }, 250);
-        }
+      function start() {
+        document.body.setAttribute("class", "colored");
+        setTimeout(() => {
+          document.querySelector("button").innerHTML = "Enjoy :)";
+        }, 250);
+        playSound("bgm");
+        ranPlay();
+        setInterval(() => {
+          playSound("bgm");
+        }, 8000);
+        setInterval(() => {
+          ranPlay();
+        }, 250);
+      }
     </script>
-</body>
-
+    <audio src="bgm.m4a"></audio> <audio src="note_1.m4a"></audio>
+    <audio src="note_2.m4a"></audio> <audio src="note_3.m4a"></audio>
+    <audio src="note_4.m4a"></audio> <audio src="note_5.m4a"></audio>
+  </body>
 </html>
